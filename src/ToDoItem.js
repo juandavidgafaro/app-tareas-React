@@ -1,8 +1,8 @@
-function ToDoItem(){
+function ToDoItem(prosp){
     return(
       <li>
         <span>V</span>
-        <p>hacer tarea</p>
+        <p>{prosp.text}</p>
         <pan>X</pan>
       </li>
     );

@@ -1,26 +1,39 @@
-import { ToDoCounter } from './ToDoCounter';
+import {ToDoCounter} from "./ToDoCounter";
 import { ToDoSearch } from './ToDoSearch';
 import { ToDoList } from './ToDoList';
 import { ToDoItem } from './ToDoItem';
-import './App.css';
+import { CreateToDoButton } from './CreateToDoButton';
+import React from "react";
+
+const defaultToDos = [
+  {text: "Hacer comida", completed: true},
+  {text: "Ir al gimnasio", completed: false},
+  {text: "dormir ", completed: false},
+  {text: "correr ", completed: false}
+]
+
 
 function App() {
   return (
-    <div className="App">
+    <React.Fragment>
 
-      <ToDoCounter />
+      <ToDoCounter completed={2} total={10} />
 
       <ToDoSearch />
 
       <ToDoList>
-        <ToDoItem />
-        <ToDoItem />
-        <ToDoItem />
+        {defaultToDos.map(todo =>(
+          <ToDoItem 
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+          />
+        ))}
       </ToDoList>
 
-      {/* <CreateToDoItem /> */}
+      <CreateToDoButton />
 
-    </div>
+    </React.Fragment>
   );
 }
 
