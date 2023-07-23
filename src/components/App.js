@@ -5,21 +5,38 @@ import { ToDoItem } from './ToDoItem';
 import { CreateToDoButton } from './CreateToDoButton';
 import React from "react";
 
+
 const defaultToDos = [
   {text: "Hacer comida", completed: true},
   {text: "Ir al gimnasio", completed: false},
   {text: "dormir ", completed: false},
-  {text: "correr ", completed: false}
+  {text: "correr ", completed: false},
+  {text: "Nadar", completed: true},
 ]
-
+/* Tener esto <> </> es lo mismo que tener <React.Fragment> </React.Fragment> */
 
 function App() {
+
+  const [ToDos, setToDos] = React.useState(defaultToDos);
+
+  const [searchValue, setSearchValue] = React.useState('');
+  console.log('Los usuario buscan: '+ searchValue);
+
+  const completedTodos = ToDos.filter(todo => todo.completed).length;
+  const totalTodos = ToDos.length;
+
   return (
-    <React.Fragment>
+    <> 
 
-      <ToDoCounter completed={2} total={10} />
+      <ToDoCounter 
+        completed={completedTodos} 
+        total={totalTodos} 
+      />
 
-      <ToDoSearch />
+      <ToDoSearch 
+        searchValue={searchValue} 
+        setSearchValue={setSearchValue} 
+      />
 
       <ToDoList>
         {defaultToDos.map(todo =>(
@@ -33,7 +50,7 @@ function App() {
 
       <CreateToDoButton />
 
-    </React.Fragment>
+    </>
   );
 }
 
