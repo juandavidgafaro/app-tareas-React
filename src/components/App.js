@@ -20,10 +20,39 @@ function App() {
   const [ToDos, setToDos] = React.useState(defaultToDos);
 
   const [searchValue, setSearchValue] = React.useState('');
+
   console.log('Los usuario buscan: '+ searchValue);
 
-  const completedTodos = ToDos.filter(todo => todo.completed).length;
+  const completedTodos = ToDos.filter(todo => !!todo.completed).length;
   const totalTodos = ToDos.length;
+
+  const searchedToDos = ToDos.filter(todo =>{
+
+    const todoText = todo.text.toLowerCase();
+    const searchText = searchValue.toLowerCase();
+
+    return todoText.includes(searchText);
+  });
+
+  const completeToDo = (text) => {
+
+    const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
+    const TodoIndex = newToDos.findIndex(
+      (todo) => todo.text == text
+    );
+    newToDos[TodoIndex].completed = true;
+    setToDos(newToDos);
+  };
+
+  const deleteToDo = (text) => {
+
+    const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
+    const TodoIndex = newToDos.findIndex(
+      (todo) => todo.text == text
+    );
+    newToDos.splice(TodoIndex, 1);
+    setToDos(newToDos);
+  };
 
   return (
     <> 
@@ -39,11 +68,13 @@ function App() {
       />
 
       <ToDoList>
-        {defaultToDos.map(todo =>(
+        {searchedToDos.map(todo =>(
           <ToDoItem 
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
+            onComplete={() => completeToDo(todo.text)}
+            onDelete = {() =>  deleteToDo(todo.text)}
           />
         ))}
       </ToDoList>
