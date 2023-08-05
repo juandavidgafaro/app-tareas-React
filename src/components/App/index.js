@@ -1,11 +1,8 @@
-import {ToDoCounter} from "./ToDoCounter";
-import { ToDoSearch } from './ToDoSearch';
-import { ToDoList } from './ToDoList';
-import { ToDoItem } from './ToDoItem';
-import { CreateToDoButton } from './CreateToDoButton';
+import {AppUI} from './AppUI'
+import { useLocalStorage } from './useLocalSto'
 import React from "react";
 
-
+/*
 const defaultToDos = [
   {text: "Hacer comida", completed: true},
   {text: "Ir al gimnasio", completed: false},
@@ -13,12 +10,18 @@ const defaultToDos = [
   {text: "correr ", completed: false},
   {text: "Nadar", completed: true},
 ]
+*/
 /* Tener esto <> </> es lo mismo que tener <React.Fragment> </React.Fragment> */
+
+//localStorage.setItem("ToDos_V1", JSON.stringify(defaultToDos));
+//localStorage.removeItem('ToDos_V1'); // Para borrar los datos que tenemos en guardados.
+//JSON.stringify(defaultToDos);
 
 function App() {
 
-  const [ToDos, setToDos] = React.useState(defaultToDos);
+  const keyTodosLc = "ToDos_V1";
 
+  const [ToDos, saveTodos] = useLocalStorage(keyTodosLc)
   const [searchValue, setSearchValue] = React.useState('');
 
   console.log('Los usuario buscan: '+ searchValue);
@@ -38,50 +41,32 @@ function App() {
 
     const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
     const TodoIndex = newToDos.findIndex(
-      (todo) => todo.text == text
+      (todo) => todo.text === text
     );
     newToDos[TodoIndex].completed = true;
-    setToDos(newToDos);
+    saveTodos(newToDos);
   };
 
   const deleteToDo = (text) => {
 
     const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
     const TodoIndex = newToDos.findIndex(
-      (todo) => todo.text == text
+      (todo) => todo.text === text
     );
     newToDos.splice(TodoIndex, 1);
-    setToDos(newToDos);
+    saveTodos(newToDos);
   };
 
   return (
-    <> 
-
-      <ToDoCounter 
-        completed={completedTodos} 
-        total={totalTodos} 
-      />
-
-      <ToDoSearch 
-        searchValue={searchValue} 
-        setSearchValue={setSearchValue} 
-      />
-
-      <ToDoList>
-        {searchedToDos.map(todo =>(
-          <ToDoItem 
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeToDo(todo.text)}
-            onDelete = {() =>  deleteToDo(todo.text)}
-          />
-        ))}
-      </ToDoList>
-
-      <CreateToDoButton />
-
-    </>
+    <AppUI 
+      completedTodos = {completedTodos}
+      totalTodos = {totalTodos}
+      searchValue = {searchValue}
+      setSearchValue = {setSearchValue}
+      searchedToDos = {searchedToDos}
+      completeToDo = {completeToDo}
+      deleteToDo = {deleteToDo}
+    />
   );
 }
 

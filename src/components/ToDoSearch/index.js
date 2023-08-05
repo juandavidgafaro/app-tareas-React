@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ToDoSearch.css';
+import '../../styles/ToDoSearch.css';
 
 function ToDoSearch({searchValue, setSearchValue}){
 

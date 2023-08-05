@@ -20,6 +20,6 @@
     transition: .3s ease;
   }
 
-.createButton:hover{
-    transform: rotate(22deg);
+.CreateButton:hover{
+    transform: rotate(224deg);
 }

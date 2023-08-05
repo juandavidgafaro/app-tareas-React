@@ -1,6 +1,6 @@
-import { ReactComponent as CheckSVG } from "./Check.svg";
-import { ReactComponent as DeleteSVG } from "./Delete.svg";
-import "../styles/ToDoIcon.css"
+import { ReactComponent as CheckSVG } from "../../Buttons/Check.svg";
+import { ReactComponent as DeleteSVG } from "../../Buttons/Delete.svg";
+import "../../styles/ToDoIcon.css"
 
 
 const iconTypes = {
