@@ -21,13 +21,24 @@ function App() {
 
   const keyTodosLc = "ToDos_V1";
 
-  const [ToDos, saveTodos] = useLocalStorage(keyTodosLc)
+  const {
+    item: ToDos, 
+    saveItem: saveTodos,
+    loading,
+    error
+  } = useLocalStorage(keyTodosLc)
   const [searchValue, setSearchValue] = React.useState('');
+
+  //const amountTrue = ToDos.filter(todo => todo.completed === true).length;
 
   console.log('Los usuario buscan: '+ searchValue);
 
   const completedTodos = ToDos.filter(todo => !!todo.completed).length;
   const totalTodos = ToDos.length;
+
+  React.useEffect(() => {
+    console.log('Loooog 2');
+  },[totalTodos]);  // tambien se le pueden adicional mas parametros [totalTodos, amountTrue]
 
   const searchedToDos = ToDos.filter(todo =>{
 
@@ -59,6 +70,8 @@ function App() {
 
   return (
     <AppUI 
+      loading={loading}
+      error={error}
       completedTodos = {completedTodos}
       totalTodos = {totalTodos}
       searchValue = {searchValue}
