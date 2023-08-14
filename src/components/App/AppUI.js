@@ -8,6 +8,7 @@ import { TodosErrors } from '../TodosErrors';
 import { EmpityTodos } from '../EmpityTodos';
 import { TodoContext } from "../TodoContex";
 import React from "react";
+import { Modal } from "../Modal";
 
 
 function AppUI() {
@@ -17,7 +18,10 @@ function AppUI() {
     error,
     searchedToDos,
     completeToDo,
-    deleteToDo 
+    deleteToDo,
+    openModal,
+    setOpenModal
+
   } = React.useContext(TodoContext);
 
   return (
@@ -34,7 +38,7 @@ function AppUI() {
         ))}
       </>)}
       {error && <TodosErrors />}
-      {(!loading && searchedToDos.length == 0) && <EmpityTodos />}
+      {(!loading && searchedToDos.length === 0) && <EmpityTodos />}
 
       {searchedToDos.map(todo => (
         <ToDoItem
@@ -49,6 +53,12 @@ function AppUI() {
       
     <CreateToDoButton />
 
+    {openModal && (
+      <Modal>
+        La funcionalidad de agregar todos
+      </Modal>
+    )}
+    
     </>
   );
 }
