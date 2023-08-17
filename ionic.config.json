@@ -1,5 +1,7 @@
 {
   "name": "tareas",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "react"
 }
