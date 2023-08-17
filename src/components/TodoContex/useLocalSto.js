@@ -49,3 +49,18 @@ function useLocalStorage(itemName, initialValue = []){
 }
 
 export{useLocalStorage};
+
+/*
+const defaultToDos = [
+  {text: "Hacer comida", completed: true},
+  {text: "Ir al gimnasio", completed: false},
+  {text: "dormir ", completed: false},
+  {text: "correr ", completed: false},
+  {text: "Nadar", completed: true},
+]
+*/
+/* Tener esto <> </> es lo mismo que tener <React.Fragment> </React.Fragment> */
+
+//localStorage.setItem("ToDos_V1", JSON.stringify(defaultToDos));
+//localStorage.removeItem('ToDos_V1'); // Para borrar los datos que tenemos en guardados.
+//JSON.stringify(defaultToDos);
