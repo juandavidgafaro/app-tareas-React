@@ -36,6 +36,18 @@ function TodoProvider({ children }){
         return todoText.includes(searchText);
     });
 
+    
+    const addTodo = (text) => {
+
+        const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
+        newToDos.push({
+            text,
+            completed: false
+        });
+       saveTodos(newToDos); 
+    }
+
+
     const completeToDo = (text) => {
 
         const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
@@ -66,6 +78,7 @@ function TodoProvider({ children }){
             searchValue,
             setSearchValue,
             searchedToDos,
+            addTodo,
             completeToDo,
             deleteToDo,
             openModal, 
