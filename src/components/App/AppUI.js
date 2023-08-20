@@ -7,6 +7,7 @@ import { TodosLoading } from '../TodosLoading';
 import { TodosErrors } from '../TodosErrors';
 import { EmpityTodos } from '../EmpityTodos';
 import { TodoContext } from "../TodoContex";
+import { TodoForm } from "../TodoForm";
 import React from "react";
 import { Modal } from "../Modal";
 
@@ -51,11 +52,13 @@ function AppUI() {
       ))}
     </ToDoList>
       
-    <CreateToDoButton />
+    <CreateToDoButton 
+      setOpenModal={setOpenModal}
+    />
 
     {openModal && (
       <Modal>
-        La funcionalidad de agregar todos
+        <TodoForm />
       </Modal>
     )}
     

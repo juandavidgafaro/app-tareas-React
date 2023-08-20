@@ -15,7 +15,7 @@ function TodoProvider({ children }){
         error
     } = useLocalStorage(keyTodosLc)
     const [searchValue, setSearchValue] = React.useState('');
-    const [openModal, setOpenModal] = React.useState(true);
+    const [openModal, setOpenModal] = React.useState(false);
 
     //const amountTrue = ToDos.filter(todo => todo.completed === true).length;
 
@@ -35,6 +35,18 @@ function TodoProvider({ children }){
 
         return todoText.includes(searchText);
     });
+
+    
+    const addTodo = (text) => {
+
+        const newToDos = [...ToDos];  // Los ... se usan para copiar un array.
+        newToDos.push({
+            text,
+            completed: false
+        });
+       saveTodos(newToDos); 
+    }
+
 
     const completeToDo = (text) => {
 
@@ -66,15 +78,13 @@ function TodoProvider({ children }){
             searchValue,
             setSearchValue,
             searchedToDos,
+            addTodo,
             completeToDo,
             deleteToDo,
             openModal, 
             setOpenModal
         }}>
-            {
-               children 
-            }
-
+            {children }
         </TodoContext.Provider>
     );
 }

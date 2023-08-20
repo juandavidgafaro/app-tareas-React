@@ -1,12 +1,11 @@
 import '../../styles/Button.css';
 
-function CreateToDoButton(){
+function CreateToDoButton({ setOpenModal }){
     return(
       <button className="CreateButton" 
-      onClick={(event) => {
+      onClick={() => {
         console.log("Hiciste Click en el boton")
-        console.log(event);
-        console.log(event.target)
+        setOpenModal(state => !state);
       }}>+</button>
     );
 }
