@@ -39,7 +39,6 @@
   },
   "homepage": "htts://juandavidgafaro.github.io/app-tareas-React",
   "devDependencies": {
-    "@capacitor/cli": "5.2.3",
     "gh-pages": "^6.0.0"
   }
 }
